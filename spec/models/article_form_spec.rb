@@ -59,7 +59,7 @@ RSpec.describe ArticleForm, type: :model do
     let(:article_form) { ArticleForm.new(article, params) }
 
     context "保存に成功した場合" do
-      let(:params) { { title: "title", category1: "1" } }
+      let(:params) { { title: "title", body: "body body", category1: "1" } }
 
       it { expect(article_form.save).to be_truthy }
       it { expect{ article_form.save }.to change{ Article.count }.by(1) }
