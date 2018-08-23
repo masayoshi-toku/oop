@@ -1,0 +1,43 @@
+%h1 Listing articles
+%search
+  = form_for @article_search_form, url: articles_url, method: :get do |f|
+    - if params.has_key?(:article_search_form) && @article_search_form.invalid?
+      #error_explanation
+        %h2= "#{pluralize(@article_search_form.errors.count, "error")} prohibited this article from being saved:"
+        %ul
+          - @article_search_form.errors.full_messages.each do |message|
+            %li= message
+
+    .field
+      = f.label :keyword
+      = f.text_field :keyword
+    .field
+      = f.label :from
+      = f.date_field :from
+    .field
+      = f.label :to
+      = f.date_field :to
+    .actions
+      = f.submit 'Search'
+
+%table
+  %thead
+    %tr
+      %th Title
+      %th Body
+      %th
+      %th
+      %th
+
+  %tbody
+    - @article_search_form.articles.each do |article|
+      %tr
+        %td= article.title
+        %td= article.body
+        %td= link_to 'Show', article
+        %td= link_to 'Edit', edit_article_path(article)
+        %td= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Article', new_article_path
