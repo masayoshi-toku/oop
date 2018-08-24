@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  include SessionsHelper
+  before_action :current_user, only: :index
+  before_action :redirect_if_logged_in, only: [:new, :create]
 
   def index
+    redirect_to login_path, notice: "ログインしてください。" and return unless logged_in?
     @users = User.all
   end
 
@@ -21,10 +24,6 @@ class UsersController < ApplicationController
   end
 
   private
-    def set_user
-      @user = User.find(params[:id])
-    end
-
     def user_params
       params.require(:user).permit(:name, :email, :password)
     end

@@ -1,17 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
+  include SessionTestHelper
   render_views
 
   describe "GET #index" do
-    it do
+    let(:user) { create(:user) }
+    before { log_in(user) }
+
+    it "returns http success" do
       get :index
       expect(response).to be_successful
     end
   end
 
   describe "GET #new" do
-    it do
+    it "returns http success" do
       get :new
       expect(response).to be_successful
     end
