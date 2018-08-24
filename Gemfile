@@ -14,6 +14,7 @@ gem "sqlite3"
 gem "turbolinks", "~> 5"
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "uglifier", ">= 1.3.0"
+gem 'bcrypt'
 
 group :test do
   gem "database_rewinder"
@@ -25,6 +26,7 @@ group :test do
   gem "ruby-debug-ide", "~> 0.7.0.beta", group: :development
   gem "simplecov", require: false
   gem "letter_opener", group: :development
+  gem 'rails-controller-testing'
 end
 
 group :development do
