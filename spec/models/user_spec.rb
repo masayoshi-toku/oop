@@ -10,12 +10,6 @@ RSpec.describe User, type: :model do
       it { is_expected.to be_invalid }
     end
 
-    context "nameが重複する場合" do
-      let(:old_user) { create(:user) }
-      let(:params) { { name: old_user.name } }
-      it { is_expected.to be_invalid }
-    end
-
     context "nameが正しい場合" do
       let(:params) { { name: "valid name" } }
       it { is_expected.to be_valid }
