@@ -11,9 +11,10 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    decorator = SavingUserWithSendingMail.new(@user)
 
-    if @user.save
-      redirect_to users_path, notice: 'User was successfully created.'
+    if decorator.save
+      redirect_to users_path, notice: '登録完了メールを送信しました。'
     else
       render :new
     end
