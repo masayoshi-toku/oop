@@ -6,7 +6,6 @@ RSpec.describe SavingArticleWithSendMail, type: :model do
 
     context "保存に成功した場合" do
       let(:result) { true }
-      let(:article) { create(:article) }
       let(:decorator) { SavingArticleWithSendMail.new(article) }
       let(:message_delivery) { instance_double(ActionMailer::MessageDelivery, deliver_now: true) }
 
