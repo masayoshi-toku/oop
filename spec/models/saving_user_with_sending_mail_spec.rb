@@ -9,7 +9,7 @@ RSpec.describe SavingUserWithSendingMail, type: :model do
       let(:decorator) { SavingUserWithSendingMail.new(user) }
       let(:message_delivery) { instance_double(ActionMailer::MessageDelivery, deliver_now: true) }
 
-      it do
+      it :aggregation_failure do
         expect(UserMailer).to receive(:new_user).with(user) { message_delivery }
         expect(decorator.save).to be_truthy
       end
@@ -19,7 +19,7 @@ RSpec.describe SavingUserWithSendingMail, type: :model do
       let(:result) { false }
       let(:decorator) { SavingUserWithSendingMail.new(user) }
 
-      it do
+      it :aggregation_failure do
         expect(UserMailer).not_to receive(:new_user)
         expect(decorator.save).to be_falsey
       end
