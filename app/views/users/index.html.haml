@@ -1,10 +1,10 @@
-%h1 Listing users
+%h1 ユーザーリスト
 
 %table
   %thead
     %tr
-      %th Name
-      %th Email
+      %th 名前
+      %th メールアドレス
 
   %tbody
     - @users.each do |user|
@@ -14,4 +14,4 @@
 
 %br
 
-= link_to 'New User', new_user_path
+= link_to '新規登録', new_user_path unless @current_user
